@@ -1,0 +1,126 @@
+.wrapper {
+    box-shadow: #0000001f 0px 1px 1px;
+    height: 60px;
+    width: 100%;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.inner {
+    height: 100%;
+    width: 1150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search,
+.search-result {
+    width: 500px;
+}
+
+.search {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 16px;
+    background: #1618230f;
+    border-radius: 92px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    margin: 0px;
+    border: 1.5px solid transparent;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 9px;
+        right: 52px;
+        width: 1px;
+        height: 28px;
+        background-color: #1618231f;
+    }
+
+    &:focus-within {
+        border-color: #16182333;
+    }
+}
+
+.search-result {
+}
+
+.input-search {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    padding: 12px 0;
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 430px;
+    color: #161823;
+    caret-color: var(--primary);
+    appearance: textfield;
+
+    &:not(:placeholder-shown) ~ .btn-search {
+        color: #161823bf;
+    }
+}
+
+.btn-search {
+    height: 46px;
+    color: #16182357;
+    width: 52px;
+    border: none;
+    outline: none;
+    border-top-right-radius: 92px;
+    border-bottom-right-radius: 92px;
+
+    svg {
+        font-size: 18px;
+    }
+
+    &:hover {
+        background-color: #1618230f;
+        cursor: pointer;
+        color: #161823;
+    }
+
+    &:active {
+        background-color: #1618230f;
+    }
+}
+
+.btn-clear,
+.loading {
+    color: rgba(22, 24, 35, 0.34);
+    font-size: 16px;
+    position: absolute;
+    right: 52px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 12px;
+}
+
+.search-title {
+    padding: 5px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: rgba(22, 24, 35, 0.5);
+}
+
+.more-btn {
+    font-size: 2rem;
+    margin-left: 24px;
+    padding: 8px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.menu-items {
+    min-width: 220px;
+}
