@@ -9,7 +9,8 @@
 
 .inner {
     height: 100%;
-    width: 1150px;
+    width: var(--default-layout-width);
+    padding: 0 var(--default-layout-horizontal-spacer);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -113,6 +114,11 @@
     color: rgba(22, 24, 35, 0.5);
 }
 
+//Action
+.actions {
+    display: flex;
+    align-items: center;
+}
 .more-btn {
     font-size: 2rem;
     margin-left: 24px;
@@ -123,4 +129,18 @@
 
 .menu-items {
     min-width: 220px;
+}
+
+.action-btn {
+    background-color: transparent;
+    font-size: 26px;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+
+.user-avatar {
+    border-radius: 999px;
+    object-fit: cover;
+    margin-left: 12px;
+    cursor: pointer;
 }
