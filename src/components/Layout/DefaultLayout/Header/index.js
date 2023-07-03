@@ -1,19 +1,19 @@
+import { faUser } from '@fortawesome/free-regular-svg-icons';
 import {
     faCircleQuestion,
     faCircleXmark,
-    faCloudArrowUp,
+    faCoins,
     faEllipsisVertical,
-    faInbox,
+    faGears,
     faKeyboard,
     faLanguage,
     faMagnifyingGlass,
-    faSpinner,
+    faRightFromBracket,
+    faSpinner
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
-
-import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import Tippy from '@tippyjs/react';
 import HeadlessTippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
@@ -21,9 +21,11 @@ import 'tippy.js/dist/tippy.css';
 import images from '~/assets/images';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
+import { LogoPrimary, NotificationIcon, UploadIcon } from '~/components/Icons';
 import { Wrapper as PoperWrapper } from '~/components/Popper';
 import Menu from '~/components/Popper/Menu';
 import styles from './Header.module.scss';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 const MenuItems = [
@@ -64,7 +66,8 @@ const handleSearch = () => {
 
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
-
+    const currentUser = true;
+    
     useEffect(() => {
         setTimeout(() => {
             setSearchResult([]);
@@ -75,13 +78,37 @@ function Header() {
         console.log(menuItem);
     };
 
-    const currentUser = true;
+    const userMenu = [
+        {
+            icon: <FontAwesomeIcon icon={faUser} />,
+            title: 'View profile',
+            to: '/@dungvi95',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faCoins} />,
+            title: 'Get coin',
+            to: '/coin',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faGears} />,
+            title: 'Settings',
+            to: '/settings',
+        },
+        ...MenuItems,
+        {
+            icon: <FontAwesomeIcon icon={faRightFromBracket} />,
+            title: 'Log out',
+            to: '/logout',
+            separate: true,
+        },
+    ]
+
 
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
-                    <img src={images.logo} alt="Tiktok" />
+                    <LogoPrimary />
                 </div>
                 <HeadlessTippy
                     interactive
@@ -114,12 +141,13 @@ function Header() {
                         <>
                             <Tippy content="Upload Video" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudArrowUp} />
+                                    <UploadIcon />
                                 </button>
                             </Tippy>
                             <Tippy content="Tin nhắn" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faPaperPlane} />
+                                    <NotificationIcon />
+                                    <span className={cx('badge')}>12</span>
                                 </button>
                             </Tippy>
                         </>
@@ -130,9 +158,9 @@ function Header() {
                         </>
                     )}
 
-                    <Menu items={MenuItems} onChange={handleMenuChange}>
+                    <Menu items={currentUser ? userMenu : MenuItems} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx('user-avatar')}
                                 src={images.avatar}
                                 alt="avatar-user"

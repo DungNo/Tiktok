@@ -1,4 +1,4 @@
-import Tippy from '@tippyjs/react';
+import Tippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 
 import { Wrapper as PoperWrapper } from '~/components/Popper';
@@ -37,6 +37,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
 
     return (
         <Tippy
+            hideOnClick={false}
             delay={[0, 500]}
             interactive
             placement="bottom-end"
@@ -55,7 +56,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
                     </PoperWrapper>
                 </div>
             )}
-            onHide={() => setHistory(prev => prev.slice(0, 1))}
+            onHide={() => setHistory((prev) => prev.slice(0, 1))}
         >
             {children}
         </Tippy>
